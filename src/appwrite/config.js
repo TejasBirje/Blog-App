@@ -1,5 +1,5 @@
 import conf from "../conf/conf";
-import { Client, Account, ID, Databases, Storage, Query } from "appwrite";
+import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class Service {
     client = new Client();
@@ -10,8 +10,8 @@ export class Service {
         this.client
         .setEndpoint(conf.appwriteUrl)
         .setProject(conf.appwriteProjectId)
-        this.databases = new Databases(this.client)
-        this.bucket = new Storage(this.client)
+        this.databases = new Databases(this.client)  //It stores ID ,content, featuredImage (id),status, title
+        this.bucket = new Storage(this.client)  // The actual image
     }
 
     async createPost({title,slug, content, featuredImage, status, userId}) {

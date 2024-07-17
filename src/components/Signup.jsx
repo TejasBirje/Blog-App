@@ -10,7 +10,7 @@ function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();  // READ DOCS: here handleSubmit is not the submit handler but a keyword, 
 
   const create = async (data) => {
     setError("");
@@ -51,8 +51,8 @@ function Signup() {
           </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-
-        <form onSubmit={handleSubmit(create)}>
+        {/* Handle Submit is just a keyword, actual submit handler is 'create' here. READ DOCS */}
+        <form onSubmit={handleSubmit(create)}>   
           <div className="space-y-5">
             <Input
               label="Full Name: "
