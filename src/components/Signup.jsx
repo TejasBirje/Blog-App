@@ -8,9 +8,9 @@ import { useDispatch } from "react-redux";
 
 function Signup() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm();  // READ DOCS: here handleSubmit is not the submit handler but a keyword, 
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
 
   const create = async (data) => {
     setError("");
@@ -18,10 +18,8 @@ function Signup() {
       const userData = await authService.createAccount(data);
       if (userData) {
         const userData = await authService.getCurrentUser();
-        if (userData) {
-          dispatch(login(userData));
-          navigate("/");
-        }
+        if (userData) dispatch(login(userData));
+        navigate("/");
       }
     } catch (error) {
       setError(error.message);
@@ -51,8 +49,8 @@ function Signup() {
           </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        {/* Handle Submit is just a keyword, actual submit handler is 'create' here. READ DOCS */}
-        <form onSubmit={handleSubmit(create)}>   
+
+        <form onSubmit={handleSubmit(create)}>
           <div className="space-y-5">
             <Input
               label="Full Name: "
